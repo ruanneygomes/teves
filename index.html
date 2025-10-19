@@ -4,107 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teves Contabilidade | Consultoria | Campo Grande - MS</title>
+    
+    <!-- Carrega Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carrega Folha de Estilo Personalizada -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Fonte Inter para um visual moderno e limpo -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* * ========================================
-         * NOVA PALETA DE CORES (Baseada na Logo)
-         * ========================================
-         */
-        :root {
-            --color-primary: #004a99;   /* Azul Escuro (Seriedade, vindo da logo) */
-            --color-secondary: #8BC34A; /* Verde (Modernidade, vindo da logo) */
-            --color-text: #334155;      /* Slate-700 (Texto principal) */
-            --color-bg-light: #F8FAFC;  /* Slate-50 (Fundo suave) */
-        }
-
-        /* * ========================================
-         * ESTILOS GERAIS
-         * ========================================
-         */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--color-text);
-            background-color: var(--color-bg-light);
-        }
-
-        /* Classes utilitárias da nova paleta */
-        .text-primary { color: var(--color-primary); }
-        .bg-primary { background-color: var(--color-primary); }
-        .border-primary { border-color: var(--color-primary); }
-
-        .text-secondary { color: var(--color-secondary); }
-        .bg-secondary { background-color: var(--color-secondary); }
-        .border-secondary { border-color: var(--color-secondary); }
-
-        /* * ========================================
-         * BOTÕES COM GRADIENTE E GLOW (Pedido do Usuário)
-         * ========================================
-         */
-        .btn-gradient {
-            /* Gradiente sutil usando o verde da logo */
-            background-image: linear-gradient(to right, var(--color-secondary) 0%, #76a042 51%, var(--color-secondary) 100%);
-            background-size: 200% auto;
-            color: white;
-            font-weight: 700; /* bold */
-            border-radius: 9999px; /* rounded-full */
-            transition: all 0.4s ease-in-out;
-            /* Sombra/Glow inicial suave */
-            box-shadow: 0 4px 15px 0 rgba(139, 195, 74, 0.3); 
-        }
-
-        .btn-gradient:hover {
-            background-position: right center; /* Animação do gradiente */
-            transform: translateY(-2px); /* Efeito de elevação */
-            /* O EFEITO "GLOW" (brilho) */
-            box-shadow: 0 10px 20px 0 rgba(139, 195, 74, 0.5);
-        }
-
-        /* * ========================================
-         * OUTROS ESTILOS (Form, Hero)
-         * ========================================
-         */
-        .hero-bg {
-            background-image: url('https://static.wixstatic.com/media/11062b_d1a646e8c3d54d97bc4f11fea4de5f78f000.jpg/v1/fill/w_980,h_551,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d1a646e8c3d54d97bc4f11fea4de5f78f000.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Overlay do Hero com o Azul da Logo */
-        .hero-overlay {
-            background-color: rgba(0, 74, 153, 0.75); /* --color-primary com 75% de opacidade */
-            backdrop-filter: blur(2px);
-        }
-        
-        .contato-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #E2E8F0; /* Slate-200 */
-            border-radius: 0.5rem;
-            transition: all 0.3s;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        /* Inputs com "Glow" verde ao focar */
-        .contato-input:focus {
-            outline: none;
-            border-color: var(--color-secondary);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.3); 
-        }
-    </style>
 </head>
 <body class="antialiased">
 
+    <!-- 1. HEADER & NAVIGATION -->
     <header class="sticky top-0 bg-white shadow-lg z-50 border-t-4 border-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             
+            <!-- Logo Teves Contabilidade (Imagem real) -->
             <a href="#inicio" class="flex-shrink-0">
                 <img src="https://static.wixstatic.com/media/06b081_086a07f614e54898b92b6794165d4dcb~mv2.png/v1/fill/w_220,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/06b081_086a07f614e54898b92b6794165d4dcb~mv2.png" 
                      alt="Teves Contabilidade Logo" 
                      class="h-12 w-auto">
             </a>
             
+            <!-- Menu Desktop -->
             <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
                 <a href="#inicio" class="hover:text-secondary transition duration-300">INÍCIO</a>
                 <a href="#empresa" class="hover:text-secondary transition duration-300">A EMPRESA</a>
@@ -113,16 +36,19 @@
                 <a href="#contato" class="hover:text-secondary transition duration-300">CONTATO</a>
             </nav>
             
+            <!-- Botão de Ação (Com Gradiente e Glow) -->
             <a href="#contato" class="hidden md:inline-block px-6 py-2 btn-gradient">
                 SOLICITAR ORÇAMENTO
             </a>
             
+            <!-- Botão Menu Mobile (Hamburguer) -->
             <button id="menu-button" class="md:hidden p-2 rounded-lg text-primary hover:bg-gray-100 transition duration-300">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </header>
 
+    <!-- Menu Mobile Oculto -->
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl w-full fixed top-16 z-40 border-t border-gray-100">
         <nav class="flex flex-col p-4 space-y-2 text-gray-700 font-medium">
             <a href="#inicio" class="py-2 px-3 rounded-md hover:bg-gray-50 transition duration-300">INÍCIO</a>
@@ -130,13 +56,16 @@
             <a href="#servicos" class="py-2 px-3 rounded-md hover:bg-gray-50 transition duration-300">SERVIÇOS</a>
             <a href="#clientes" class="py-2 px-3 rounded-md hover:bg-gray-50 transition duration-300">CLIENTES</a>
             <a href="#contato" class="py-2 px-3 rounded-md hover:bg-gray-50 transition duration-300">CONTATO</a>
+            <!-- Botão Mobile (Com Gradiente) -->
             <a href="#contato" class="text-center mt-2 py-3 btn-gradient">
                 SOLICITAR ORÇAMENTO
             </a>
         </nav>
     </div>
 
+    <!-- 2. HERO SECTION (Banner Principal) -->
     <section id="inicio" class="hero-bg py-32 sm:py-40 md:py-56 relative overflow-hidden">
+        <!-- Overlay com a cor primária da marca -->
         <div class="absolute inset-0 hero-overlay"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 text-white">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 drop-shadow-2xl">
@@ -145,12 +74,14 @@
             <p class="text-lg sm:text-xl font-light opacity-90 mb-10 max-w-3xl mx-auto">
                 Parceiros certos para a gestão da sua empresa em Campo Grande - MS e todo o Brasil.
             </p>
+            <!-- Botão Principal (Com Gradiente e Glow) -->
             <a href="#contato" class="px-10 py-4 text-xl btn-gradient inline-block mt-8">
                 FALE COM UM CONSULTOR
             </a>
         </div>
     </section>
 
+    <!-- 3. ABOUT SECTION (A EMPRESA) -->
     <section id="empresa" class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="md:grid md:grid-cols-2 md:gap-16 items-center">
@@ -179,6 +110,7 @@
         </div>
     </section>
 
+    <!-- 4. SERVICES SECTION (SERVIÇOS) -->
     <section id="servicos" class="py-20 lg:py-32 bg-bg-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-sm uppercase font-bold text-secondary mb-2 tracking-widest text-center">Nossas Competências</h2>
@@ -186,6 +118,7 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 
+                <!-- Card (Cores da marca) -->
                 <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-primary hover:border-secondary flex flex-col transform hover:-translate-y-1">
                     <div class="text-5xl text-secondary mb-4">📝</div>
                     <h4 class="text-2xl font-semibold text-primary mb-3">Assessoria Contábil</h4>
@@ -225,6 +158,7 @@
         </div>
     </section>
 
+    <!-- 5. CLIENTS SECTION (CLIENTES) -->
     <section id="clientes" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-sm uppercase font-bold text-secondary mb-2 tracking-widest">Nossos Parceiros</h2>
@@ -239,18 +173,21 @@
                 <img src="https://static.wixstatic.com/media/06b081_2d699dbb254a43c7c82d6563e60e0216~mv2.png/v1/fill/w_201,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/aplicacao.png" alt="Aplicacao" class="h-10 sm:h-16 max-w-full object-contain hover:opacity-100 transition duration-300">
             </div>
             
+            <!-- Botão Secundário (Outline) -->
             <a href="#contato" class="mt-16 inline-block px-8 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition duration-300 shadow-lg hover:shadow-primary/20">
                 Seja Nosso Próximo Parceiro
             </a>
         </div>
     </section>
 
+    <!-- 6. CONTACT SECTION (Formulário e Informações) -->
     <section id="contato" class="py-20 lg:py-32 bg-bg-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-sm uppercase font-bold text-secondary mb-2 tracking-widest text-center">Fale Conosco</h2>
             <h3 class="text-4xl sm:text-5xl font-bold text-primary text-center mb-16">INFORMAÇÕES & ATENDIMENTO</h3>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-10 lg:p-16 rounded-xl shadow-2xl">
+                <!-- Informações de Contato -->
                 <div class="space-y-6 text-gray-700">
                     <h4 class="text-2xl font-bold text-primary border-b pb-2 border-gray-100">Dados de Contato</h4>
                     
@@ -270,11 +207,13 @@
                         </div>
                     </div>
 
+                    <!-- Botão WhatsApp (Com Gradiente e Glow) -->
                     <a href="https://api.whatsapp.com/send?phone=556733831562" target="_blank" class="inline-flex items-center space-x-3 btn-gradient px-8 py-3 mt-8">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2 6.58 2 12.04c0 1.94.55 3.76 1.54 5.37L2.01 22l4.74-1.25c1.55.85 3.32 1.34 5.29 1.34 5.46 0 9.92-4.58 9.92-10.04S17.5 2 12.04 2zm4.33 13.56c-.22.46-.7.63-1.07.44-.37-.19-1.2-.5-2.28-.96-.75-.32-1.25-.49-1.78-.49-.4 0-.8.15-.8.56 0 .39.22.4.6.86.38.46.77.92 1.15 1.45.38.53.84.58 1.15.58.31 0 1.69-.65 2.06-1.57.37-.92.37-1.7.27-1.89-.1-.2-.37-.32-.55-.41-.18-.09-.38-.13-.6-.13s-.47.07-.65.2c-.18.14-.54.67-.54.67s-.35.43-.68.43c-.33 0-1.7-.5-3.32-2.07-.15-.15-.31-.32-.47-.5-.99-1.18-1.58-2.3-1.58-2.31 0-.17.13-.35.25-.47.12-.12.27-.29.41-.43.14-.14.24-.26.37-.4.13-.14.2-.23.27-.33.07-.1.14-.23.14-.42 0-.27-.85-2.14-.85-2.14-.24-.62-.5-1.02-.75-1.02-.25 0-.5.06-.75.09-.25.03-.5.1-.75.24-.25.14-.5.35-.75.75-.25.4-.5.95-.5 1.63 0 .7.5 1.57 1.1 2.39 1.46 2.02 2.8 3.5 3.6 4.35 1.4 1.5 2.65 2.1 3.5 2.1.85 0 2.25-.97 2.62-1.34.37-.37.56-.57.75-.89.19-.32.25-.56.25-1.01.01-.27-.47-1.42-.85-1.99z"></path></svg>
                         <span>Fale Conosco no WhatsApp</span>
                     </a>
 
+                    <!-- Links Sociais -->
                     <div class="flex space-x-4 pt-4">
                         <a href="https://www.facebook.com/tevescontabilidade/" target="_blank" class="hover:scale-110 transition duration-200">
                             <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_35,h_35,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook" class="w-9 h-9 rounded-full shadow-md">
@@ -285,6 +224,7 @@
                     </div>
                 </div>
 
+                <!-- Formulário de Contato -->
                 <div>
                     <h4 class="text-2xl font-bold text-primary mb-6 border-b pb-2 border-gray-100">Envie uma Mensagem</h4>
                     <p class="text-gray-600 mb-6">Preencha o formulário e nossa equipe entrará em contato o mais breve possível.</p>
@@ -294,6 +234,7 @@
                         <input type="email" name="email" placeholder="Seu Melhor Email" class="contato-input" required>
                         <textarea name="mensagem" placeholder="Detalhe sua necessidade ou mensagem" rows="5" class="contato-input" required></textarea>
                         
+                        <!-- Botão Enviar (Com Gradiente) -->
                         <button type="submit" class="w-full py-3 btn-gradient text-lg">
                             ENVIAR MENSAGEM
                         </button>
@@ -306,6 +247,7 @@
         </div>
     </section>
 
+    <!-- 7. FOOTER (Cor primária da marca) -->
     <footer class="bg-primary py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-opacity-80">
             <p class="mb-2">© 2025 Teves Contabilidade. Todos os direitos reservados.</p>
@@ -317,6 +259,7 @@
         </div>
     </footer>
 
+    <!-- JavaScript para Menu Mobile -->
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
