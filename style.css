@@ -1,87 +1,74 @@
-/* * ========================================
- * NOVA PALETA DE CORES (Baseada na Logo)
- * ========================================
- */
+/* Configuração de cores e fonte base */
 :root {
-    --color-primary: #004a99;   /* Azul Escuro (Seriedade, vindo da logo) */
-    --color-secondary: #8BC34A; /* Verde (Modernidade, vindo da logo) */
-    --color-text: #334155;      /* Slate-700 (Texto principal) */
-    --color-bg-light: #F8FAFC;  /* Slate-50 (Fundo suave) */
+    --color-primary: #051c38; /* Azul Escuro Institucional */
+    --color-accent: #10a59a; /* Verde/Teal de Destaque */
+    --color-light-accent: #d2f4f2; /* Teal muito claro */
+    --color-text: #333333;
 }
 
-/* * ========================================
- * ESTILOS GERAIS
- * ========================================
- */
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--color-text);
-    background-color: var(--color-bg-light);
+/* Estilos customizados para o CTA com gradiente */
+.cta-button {
+    background-image: linear-gradient(to right, #10a59a, #051c38);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 165, 154, 0.4);
 }
 
-/* Classes utilitárias para usar as cores da marca no HTML com Tailwind.
-  Isso permite que o Tailwind reconheça nossas cores personalizadas.
-*/
-.text-primary { color: var(--color-primary); }
-.bg-primary { background-color: var(--color-primary); }
-.border-primary { border-color: var(--color-primary); }
+/* Estilo para ícones de serviço */
+.service-icon {
+    color: var(--color-accent);
+}
 
-.text-secondary { color: var(--color-secondary); }
-.bg-secondary { background-color: var(--color-secondary); }
-.border-secondary { border-color: var(--color-secondary); }
+/* Estilo para a seção de serviços no layout móvel */
+.service-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.service-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent);
+}
 
-/* * ========================================
- * BOTÕES COM GRADIENTE E GLOW (Pedido do Usuário)
- * ========================================
- */
-.btn-gradient {
-    /* Gradiente sutil usando o verde da logo */
-    background-image: linear-gradient(to right, var(--color-secondary) 0%, #76a042 51%, var(--color-secondary) 100%);
-    background-size: 200% auto;
-    color: white;
-    font-weight: 700; /* bold */
+/* Estilização para o título grande do Hero */
+.hero-title {
+    color: var(--color-primary);
+    font-size: 3rem; /* Tamanho base */
+    line-height: 1.1;
+}
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 4.5rem; /* Tamanho desktop */
+    }
+}
+
+/* --- ANIMAÇÃO DO GRÁFICO PARA A SEÇÃO HERO (4 SEGUNDOS) --- */
+@keyframes barBounce {
+    0% { height: 0; }
+    70% { height: var(--bar-height); }
+    80% { height: calc(var(--bar-height) + 5%); } 
+    90% { height: var(--bar-height); }
+    95% { height: calc(var(--bar-height) + 2%); } 
+    100% { height: var(--bar-height); }
+}
+
+.chart-bar {
+    /* Duração aumentada para 4s para um efeito mais lento e suave */
+    animation: barBounce 6s ease-out forwards;
+    animation-delay: var(--delay);
+    height: 0;
+}
+
+/* Estilo do botão de WhatsApp no rodapé */
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
     border-radius: 9999px; /* rounded-full */
-    transition: all 0.4s ease-in-out;
-    /* Sombra/Glow inicial suave */
-    box-shadow: 0 4px 15px 0 rgba(139, 195, 74, 0.3); 
-}
-
-.btn-gradient:hover {
-    background-position: right center; /* Animação do gradiente */
-    transform: translateY(-2px); /* Efeito de elevação */
-    /* O EFEITO "GLOW" (brilho) */
-    box-shadow: 0 10px 20px 0 rgba(139, 195, 74, 0.5);
-}
-
-/* * ========================================
- * OUTROS ESTILOS (Form, Hero)
- * ========================================
- */
-.hero-bg {
-    background-image: url('https://static.wixstatic.com/media/11062b_d1a646e8c3d54d97bc4f11fea4de5f78f000.jpg/v1/fill/w_980,h_551,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d1a646e8c3d54d97bc4f11fea4de5f78f000.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-/* Overlay do Hero com o Azul da Logo */
-.hero-overlay {
-    background-color: rgba(0, 74, 153, 0.75); /* --color-primary com 75% de opacidade */
-    backdrop-filter: blur(2px);
-}
-
-.contato-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #E2E8F0; /* Slate-200 */
-    border-radius: 0.5rem;
-    transition: all 0.3s;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-/* Inputs com "Glow" verde ao focar */
-.contato-input:focus {
-    outline: none;
-    border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.3); 
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* tracking-wider */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+    color: white; /* Texto sempre branco no botão gradiente */
 }
