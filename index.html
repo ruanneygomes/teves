@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Carrega a biblioteca Lucide para ícones profissionais -->
     <script type="module">
-        import { createIcons, Search, BarChart3, CheckCheck, MapPin, Phone, MessageSquare, Briefcase, Lightbulb, Scale, Handshake } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
-        createIcons({ icons: { Search, BarChart3, CheckCheck, MapPin, Phone, MessageSquare, Briefcase, Lightbulb, Scale, Handshake } });
+        import { createIcons, Search, BarChart3, CheckCheck, MapPin, Phone, MessageSquare, Briefcase, Lightbulb, Scale, Handshake, TrendingUp, Users, Clock, Zap } from 'https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js';
+        createIcons({ icons: { Search, BarChart3, CheckCheck, MapPin, Phone, MessageSquare, Briefcase, Lightbulb, Scale, Handshake, TrendingUp, Users, Clock, Zap } });
     </script>
     <style>
         /* Configuração de cores e fonte base */
@@ -45,48 +45,31 @@
             border-color: var(--color-accent);
         }
 
-        /* Estilização para o título grande do Hero */
+        /* Estilização para o título grande do Hero - TAMANHO AJUSTADO */
         .hero-title {
             color: var(--color-primary);
-            font-size: 3rem; /* Tamanho base */
+            font-size: 2.5rem; /* Ajustado de 3rem para 2.5rem (Mobile) */
             line-height: 1.1;
         }
         @media (min-width: 768px) {
             .hero-title {
-                font-size: 4.5rem; /* Tamanho desktop */
+                font-size: 3.5rem; /* Ajustado de 4.5rem para 3.5rem (Desktop) */
             }
         }
 
-        /* --- ANIMAÇÃO DO GRÁFICO PARA A SEÇÃO HERO (4 SEGUNDOS) --- */
-        @keyframes barBounce {
-            0% { height: 0; }
-            70% { height: var(--bar-height); }
-            80% { height: calc(var(--bar-height) + 5%); } 
-            90% { height: var(--bar-height); }
-            95% { height: calc(var(--bar-height) + 2%); } 
-            100% { height: var(--bar-height); }
+        /* --- Estilo para o Novo Gráfico (KPIs de Contagem) --- */
+        .kpi-box {
+            background-image: linear-gradient(135deg, #051c38 5%, #10a59a 100%);
+            box-shadow: 0 10px 25px rgba(5, 28, 56, 0.4);
         }
-
-        .chart-bar {
-            /* Duração aumentada para 4s para um efeito mais lento e suave */
-            animation: barBounce 4s ease-out forwards;
-            animation-delay: var(--delay);
-            height: 0;
+        .kpi-value {
+            font-size: 2.5rem;
+            line-height: 1;
+            font-weight: 800; /* Extra bold */
+            color: #d2f4f2; /* Cor clara para contraste */
+            transition: all 0.3s ease-out;
         }
-
-        /* Estilo do botão de WhatsApp no rodapé */
-        .whatsapp-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px; /* rounded-full */
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.05em; /* tracking-wider */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
-            color: white; /* Texto sempre branco no botão gradiente */
-        }
-        /* Fim da animação */
+        /* Fim da animação e estilos */
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-white">
@@ -97,6 +80,7 @@
             
             <!-- Logo -->
             <a href="#" class="flex items-center">
+                <!-- Fallback para a logo caso o arquivo não seja encontrado -->
                 <img src="assets/logo-teves.png" onerror="this.onerror=null; this.src='https://placehold.co/180x40/FFFFFF/051C38?text=Logo+Teves'" alt="Logo da Teves Contabilidade" class="h-8 md:h-10">
             </a>
 
@@ -105,7 +89,6 @@
                 <a href="#" class="hover:text-[var(--color-accent)] transition-colors">INÍCIO</a>
                 <a href="#empresa" class="hover:text-[var(--color-accent)] transition-colors">A EMPRESA</a>
                 <a href="#servicos" class="hover:text-[var(--color-accent)] transition-colors">SERVIÇOS</a>
-                <a href="#clientes" class="hover:text-[var(--color-accent)] transition-colors">CLIENTES</a>
                 <a href="#contato" class="hover:text-[var(--color-accent)] transition-colors">CONTATO</a>
             </nav>
 
@@ -122,13 +105,15 @@
     </header>
 
     <!-- 2. SEÇÃO HERO (BOAS-VINDAS) -->
-    <section class="py-16 md:py-32 bg-gray-50/50">
+    <!-- AJUSTE DE ESPAÇAMENTO VERTICAL: py-16 para py-12 e md:py-32 para md:py-24 -->
+    <section class="py-12 md:py-24 bg-gray-50/50">
         <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             <!-- Lado Esquerdo: Texto Principal e CTAs -->
             <div>
+                <!-- TÍTULO PRINCIPAL ENCURTADO PARA OTIMIZAR ESPAÇO -->
                 <h1 class="hero-title font-extrabold mb-6">
-                    Sua Contabilidade <br class="hidden sm:block"> Estratégica para um <br class="hidden sm:block"> Crescimento Sólido
+                    Contabilidade Estratégica <br class="hidden sm:block"> para Seu Crescimento
                 </h1>
                 
                 <p class="text-lg text-[var(--color-text)] mb-6 max-w-lg">
@@ -153,36 +138,39 @@
                 </a>
             </div>
 
-            <!-- Lado Direito: ELEMENTO ANIMADO DE GRÁFICO -->
-            <div class="hidden lg:flex justify-center items-center h-[450px] p-8 bg-white rounded-xl shadow-2xl relative">
-                <!-- Wrapper do Gráfico -->
-                <div class="w-full h-full flex items-end justify-center space-x-3">
-                    <!-- Barra 1 -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 75%; --delay: 0.1s; background-color: var(--color-accent);"></div>
-                    <!-- Barra 2 -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 55%; --delay: 0.2s; background-image: linear-gradient(to top, #10a59a, #051c38);"></div>
-                    <!-- Barra 3 (Nova) -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 88%; --delay: 0.3s; background-color: var(--color-accent);"></div>
-                    <!-- Barra 4 -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 65%; --delay: 0.4s; background-image: linear-gradient(to top, #10a59a, #051c38);"></div>
-                    <!-- Barra 5 -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 90%; --delay: 0.5s; background-color: var(--color-accent);"></div>
-                    <!-- Barra 6 -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 70%; --delay: 0.6s; background-image: linear-gradient(to top, #10a59a, #051c38);"></div>
-                    <!-- Barra 7 (Nova) -->
-                    <div class="chart-bar w-7 rounded-t-full shadow-lg" 
-                         style="--bar-height: 82%; --delay: 0.7s; background-color: var(--color-accent);"></div>
+            <!-- Lado Direito: NOVO ELEMENTO ANIMADO DE KPIS DE RESULTADO -->
+            <div class="hidden lg:grid grid-cols-2 gap-6 p-8 bg-white rounded-xl shadow-2xl h-full">
+                <!-- KPI 1: Redução de Custos -->
+                <div class="kpi-box p-6 rounded-xl text-center flex flex-col items-center justify-center">
+                    <i data-lucide="trending-up" class="w-10 h-10 mb-2 text-white/80"></i>
+                    <div id="kpi-1-value" class="kpi-value text-white">+0%</div>
+                    <p class="text-sm text-white/90 font-medium">Redução Média de Custos</p>
                 </div>
                 
-                <!-- Eixo X e Legenda -->
-                <div class="absolute bottom-6 left-0 right-0 h-0.5 bg-gray-300 mx-8"></div>
-                <p class="absolute top-4 left-8 text-lg font-bold text-[var(--color-primary)]">Crescimento de Resultados (Visão Estratégica)</p>
+                <!-- KPI 2: Clientes Atendidos -->
+                <div class="kpi-box p-6 rounded-xl text-center flex flex-col items-center justify-center">
+                    <i data-lucide="users" class="w-10 h-10 mb-2 text-white/80"></i>
+                    <div id="kpi-2-value" class="kpi-value text-white">0</div>
+                    <p class="text-sm text-white/90 font-medium">Empresas Atendidas</p>
+                </div>
+
+                <!-- KPI 3: Tempo de Resposta -->
+                <div class="kpi-box p-6 rounded-xl text-center flex flex-col items-center justify-center">
+                    <i data-lucide="clock" class="w-10 h-10 mb-2 text-white/80"></i>
+                    <div id="kpi-3-value" class="kpi-value text-white">0h</div>
+                    <p class="text-sm text-white/90 font-medium">Tempo Médio de Resposta</p>
+                </div>
+
+                <!-- KPI 4: Otimização Fiscal -->
+                <div class="kpi-box p-6 rounded-xl text-center flex flex-col items-center justify-center">
+                    <i data-lucide="zap" class="w-10 h-10 mb-2 text-white/80"></i>
+                    <div id="kpi-4-value" class="kpi-value text-white">0%</div>
+                    <p class="text-sm text-white/90 font-medium">Otimização Fiscal</p>
+                </div>
+
+                <p class="col-span-2 text-center text-sm text-[var(--color-primary)] font-semibold mt-4">
+                    Resultados tangíveis para a saúde financeira do seu negócio.
+                </p>
             </div>
         </div>
     </section>
@@ -227,30 +215,7 @@
         </div>
     </section>
 
-    <!-- 4. NOVA SEÇÃO DE CLIENTES (APENAS LOGOS PLACEHOLDER) -->
-    <section id="clientes" class="py-16 md:py-24 bg-gray-50/50">
-        <div class="container mx-auto px-4 md:px-8">
-            <h2 class="text-4xl font-extrabold text-center mb-16 text-[var(--color-primary)]">Quem Confia em Nossa Estratégia</h2>
-
-            <!-- Galeria de Logos de Clientes (Placeholders) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-12 items-center justify-center">
-                <!-- Logo 1: Startup Tech -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Startup+Tech" alt="Logo Cliente Startup Tech" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Startup+Tech'">
-                <!-- Logo 2: Loja Virtual -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Loja+Virtual" alt="Logo Cliente Loja Virtual" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Loja+Virtual'">
-                <!-- Logo 3: Clínica de Saúde -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Clínica+Saúde" alt="Logo Cliente Clínica de Saúde" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Clínica+Saúde'">
-                <!-- Logo 4: Engenharia -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Engenharia" alt="Logo Cliente Engenharia" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Engenharia'">
-                <!-- Logo 5: Serviços Digitais -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Serviços+Digitais" alt="Logo Cliente Serviços Digitais" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Serviços+Digitais'">
-                <!-- Logo 6: Gastronomia -->
-                <img src="https://placehold.co/150x60/d2f4f2/051C38?text=Gastronomia" alt="Logo Cliente Gastronomia" class="mx-auto w-full h-auto p-2 bg-white rounded-lg shadow-sm" onerror="this.src='https://placehold.co/150x60/d2f4f2/051C38?text=Gastronomia'">
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. SEÇÃO DE CONTATO E INFORMAÇÕES (RODAPÉ/FOOTER) -->
+    <!-- 4. SEÇÃO DE CONTATO E INFORMAÇÕES (RODAPÉ/FOOTER) -->
     <footer id="contato" class="bg-gray-100 py-12 md:py-16 border-t border-gray-200">
         <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
             
@@ -263,7 +228,7 @@
                     <div class="flex items-start">
                         <i data-lucide="map-pin" class="w-5 h-5 mr-3 mt-1 text-[var(--color-accent)] flex-shrink-0"></i>
                         <p class="text-gray-600">
-                            Endereço: <br>
+                            **Endereço:** <br>
                             Av. Fernando Corrêa da Costa, 1010, sala 12 - Centro, Campo Grande - MS, 79004-310
                         </p>
                     </div>
@@ -277,9 +242,10 @@
                     </div>
 
                     <!-- WhatsApp - Botão de destaque com gradiente -->
-                    <a href="https://wa.me/556733831562" target="_blank" class="whatsapp-button cta-button shadow-md hover:shadow-xl">
-                        <!-- Ícone do WhatsApp: mudado para branco para contraste no botão gradiente -->
-                        <i data-lucide="message-square" class="w-5 h-5 mr-3 fill-white text-white"></i>
+                    <!-- CORREÇÃO APLICADA: Adicionado 'flex items-center' ao link para garantir alinhamento e visibilidade do ícone. Removido 'fill-white' pois Lucide usa 'stroke'. -->
+                    <a href="https://wa.me/556733831562" target="_blank" class="whatsapp-button cta-button shadow-md hover:shadow-xl py-3 px-6 rounded-full inline-flex items-center text-white font-bold text-sm">
+                        <!-- Ícone do WhatsApp: message-square com text-white para contraste no botão gradiente -->
+                        <i data-lucide="message-square" class="w-5 h-5 mr-3 text-white"></i>
                         CHAME NO WHATSAPP
                     </a>
                 </div>
@@ -291,7 +257,7 @@
                 <nav class="space-y-2">
                     <a href="#empresa" class="block text-gray-600 hover:text-[var(--color-accent)] transition-colors">A Empresa</a>
                     <a href="#servicos" class="block text-gray-600 hover:text-[var(--color-accent)] transition-colors">Nossos Serviços</a>
-                    <a href="#clientes" class="block text-gray-600 hover:text-[var(--color-accent)] transition-colors">Clientes</a>
+                    <a href="#contato" class="block text-gray-600 hover:text-[var(--color-accent)] transition-colors">Contato</a>
                     <a href="#" class="block text-gray-600 hover:text-[var(--color-accent)] transition-colors">Política de Privacidade</a>
                 </nav>
             </div>
@@ -325,5 +291,76 @@
         </div>
     </footer>
 
+    <!-- Script JavaScript para a animação do contador de KPIs -->
+    <script>
+        // Função para animar a contagem
+        function animateValue(id, start, end, duration, prefix = '', suffix = '') {
+            const range = end - start;
+            let current = start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            const obj = document.getElementById(id);
+
+            // Verifica se o elemento existe
+            if (!obj) return;
+
+            const timer = setInterval(() => {
+                current += increment;
+                
+                let displayValue;
+                if (suffix === '%') {
+                    // Formato para percentual
+                    displayValue = `${prefix}${current.toFixed(0)}${suffix}`;
+                } else if (suffix === 'h') {
+                    // Formato para horas
+                    displayValue = `${prefix}${current.toFixed(0)}${suffix}`;
+                } else {
+                    // Formato para números inteiros (clientes)
+                    displayValue = `${prefix}${current.toLocaleString('pt-BR')}${suffix}`;
+                }
+                
+                obj.textContent = displayValue;
+
+                if (current == end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        // Função que inicia a contagem
+        function startKpiAnimations() {
+            // KPI 1: Redução de Custos (ex: 15% de redução)
+            animateValue('kpi-1-value', 0, 15, 2000, '+', '%');
+            // KPI 2: Empresas Atendidas (ex: 280 empresas)
+            animateValue('kpi-2-value', 0, 280, 2000, '', '');
+            // KPI 3: Tempo de Resposta (ex: 2h)
+            animateValue('kpi-3-value', 0, 2, 2000, '', 'h');
+            // KPI 4: Otimização Fiscal (ex: 20%)
+            animateValue('kpi-4-value', 0, 20, 2000, '', '%');
+        }
+
+        // Observador para iniciar a animação quando o elemento entrar na tela (melhora a performance)
+        const kpiSection = document.querySelector('.hidden.lg\\:grid');
+
+        if (kpiSection) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startKpiAnimations();
+                        observer.unobserve(entry.target); // Para a observação após a animação iniciar
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.5 // Inicia quando 50% do elemento estiver visível
+            });
+
+            observer.observe(kpiSection);
+        } else {
+            // Fallback para iniciar se a seção não for encontrada ou se o IntersectionObserver falhar
+             window.onload = startKpiAnimations;
+        }
+
+    </script>
 </body>
 </html>
